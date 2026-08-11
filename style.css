@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px 18px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 10px 0 24px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 22px;
+    margin-top: 0;
+}
+
+p {
+    color: #666;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 14px;
+    background: #007aff;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* Empty state */
+
+.empty {
+    background: white;
+    padding: 24px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.empty p {
+    margin-top: 0;
+}
+
+
+/* Vehicle card */
+
+.vehicle-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.vehicle-card h2 {
+    margin-bottom: 20px;
+}
+
+.vehicle-card p {
+    margin: 12px 0;
+}
+
+
+/* Form */
+
+.form-card {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 7px;
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #f9f9fb;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007aff;
+    background: white;
+}
+
+
+/* Buttons */
+
+.button-row {
+    margin-top: 20px;
+}
+
+.danger {
+    background: #ff3b30;
+}
+
+.secondary {
+    background: #e5e5ea;
+    color: #1d1d1f;
+}
+
+
+/* Hidden */
+
+.hidden {
+    display: none;
+}
+/* -------------------------
+   Next Service
+------------------------- */
+
+.next-service-card {
+    margin-top: 20px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.next-service-header {
+    min-height: 64px;
+    padding: 0 16px 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.plus-button {
+    width: 38px;
+    height: 38px;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 50%;
+
+    background: #f5f5f7;
+    color: #1d1d1f;
+
+    font-size: 28px;
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.2s ease;
+}
+
+.plus-button:active {
+    transform: scale(0.9);
+}
+
+.next-service-content {
+    padding: 0 20px 20px;
+}
+
+.saved-next-service {
+    background: #f5f5f7;
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.saved-next-service p {
+    margin: 9px 0;
+}
+
+.saved-next-service p:last-of-type {
+    margin-bottom: 16px;
+}
+
+.saved-next-service span {
+    color: #555;
+}
+
+
+/* Next Service text area */
+
+#nextServiceDetailsInput {
+    width: 100%;
+    min-height: 90px;
+    padding: 13px;
+
+    margin-top: 7px;
+
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    background: #f9f9fb;
+
+    resize: vertical;
+
+    display: block;
+}
+
+#nextServiceDetailsInput:focus {
+    outline: none;
+    border-color: #007aff;
+    background: white;
+}
+/* -------------------------
+   Registration
+------------------------- */
+
+.registration-card {
+    margin-top: 20px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.registration-header {
+    min-height: 64px;
+    padding: 0 16px 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.registration-content {
+    padding: 0 20px 20px;
+}
+
+.saved-registration {
+    background: #f5f5f7;
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.saved-registration p {
+    margin: 9px 0;
+}
+
+.saved-registration p:last-of-type {
+    margin-bottom: 16px;
+}
+
+.saved-registration span {
+    color: #555;
+}
+
+
+/* Registration select */
+
+#registrationPeriodInput {
+    width: 100%;
+    padding: 13px;
+
+    margin-top: 7px;
+
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    background: #f9f9fb;
+
+    appearance: auto;
+}
+
+#registrationPeriodInput:focus {
+    outline: none;
+    border-color: #007aff;
+    background: white;
+}

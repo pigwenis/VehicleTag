@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Tag App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Your Vehicle</h1>
+
+        <!-- No Vehicle -->
+        <div id="noVehicle" class="empty">
+            <p>No vehicle saved.</p>
+            <button id="addVehicleButton">Add Vehicle</button>
+        </div>
+
+        <!-- Vehicle Display -->
+        <div id="vehicleDisplay" class="vehicle-card hidden">
+
+            <h2 id="vehicleTitle"></h2>
+
+            <p>
+                <strong>Registration:</strong>
+                <span id="vehicleRego"></span>
+            </p>
+
+            <p>
+                <strong>Make:</strong>
+                <span id="vehicleMake"></span>
+            </p>
+
+            <p>
+                <strong>Model:</strong>
+                <span id="vehicleModel"></span>
+            </p>
+
+            <p>
+                <strong>Year:</strong>
+                <span id="vehicleYear"></span>
+            </p>
+
+            <p>
+                <strong>VIN:</strong>
+                <span id="vehicleVin"></span>
+            </p>
+
+            <div class="button-row">
+                <button id="editVehicleButton">Edit Vehicle</button>
+                <button id="deleteVehicleButton" class="danger">
+                    Delete Vehicle
+                </button>
+            </div>
+
+        </div>
+<!-- Next Service -->
+
+<div id="nextServiceCard" class="next-service-card">
+
+    <div class="next-service-header" id="nextServiceHeader">
+
+        <div>
+            <span>Next Service</span>
+        </div>
+
+        <button
+            id="nextServiceToggle"
+            class="plus-button"
+            type="button"
+        >
+            +
+        </button>
+
+    </div>
+
+
+    <div id="nextServiceContent" class="next-service-content hidden">
+
+        <div id="savedNextService" class="saved-next-service hidden">
+
+            <p>
+                <strong>Date:</strong>
+                <span id="nextServiceDate"></span>
+            </p>
+
+            <p>
+                <strong>KM:</strong>
+                <span id="nextServiceKm"></span>
+            </p>
+
+            <p>
+                <strong>Details:</strong>
+                <span id="nextServiceDetails"></span>
+            </p>
+
+            <button
+                id="editNextServiceButton"
+                class="secondary"
+                type="button"
+            >
+                Edit Next Service
+            </button>
+
+        </div>
+
+
+        <div id="nextServiceForm">
+
+            <label>
+                Service Date
+
+                <input
+                    id="nextServiceDateInput"
+                    type="date"
+                >
+            </label>
+
+
+            <label>
+                Service KM
+
+                <input
+                    id="nextServiceKmInput"
+                    type="number"
+                    placeholder="190000"
+                >
+            </label>
+
+
+            <label>
+                What needs to be done?
+
+                <textarea
+                    id="nextServiceDetailsInput"
+                    placeholder="Oil and filter change, brake inspection..."
+                ></textarea>
+
+            </label>
+
+
+            <button
+                id="saveNextServiceButton"
+                type="button"
+            >
+                Save Next Service
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Registration -->
+
+<div id="registrationCard" class="registration-card">
+
+    <div class="registration-header" id="registrationHeader">
+
+        <div>
+            <span>Registration</span>
+        </div>
+
+        <button
+            id="registrationToggle"
+            class="plus-button"
+            type="button"
+        >
+            +
+        </button>
+
+    </div>
+
+
+    <div id="registrationContent" class="registration-content hidden">
+
+        <div id="savedRegistration" class="saved-registration hidden">
+
+            <p>
+                <strong>Registration:</strong>
+                <span id="savedRegistrationNumber"></span>
+            </p>
+
+            <p>
+                <strong>Expiry Date:</strong>
+                <span id="savedRegistrationExpiry"></span>
+            </p>
+
+            <p>
+                <strong>Renewal Period:</strong>
+                <span id="savedRegistrationPeriod"></span>
+            </p>
+
+            <button
+                id="editRegistrationButton"
+                class="secondary"
+                type="button"
+            >
+                Edit Registration
+            </button>
+
+        </div>
+
+
+        <div id="registrationForm">
+
+            <label>
+                Registration
+
+                <input
+                    id="registrationInput"
+                    type="text"
+                    placeholder="ABC123"
+                >
+            </label>
+
+
+            <label>
+                Expiry Date
+
+                <input
+                    id="registrationExpiryInput"
+                    type="date"
+                >
+            </label>
+
+
+            <label>
+                Renewal Period
+
+                <select id="registrationPeriodInput">
+
+                    <option value="3">3 months</option>
+
+                    <option value="6">6 months</option>
+
+                    <option value="12">12 months</option>
+
+                </select>
+
+            </label>
+
+
+            <button
+                id="saveRegistrationButton"
+                type="button"
+            >
+                Save Registration
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+        <!-- Add / Edit Vehicle Form -->
+        <div id="vehicleForm" class="form-card hidden">
+
+            <h2 id="formTitle">Add Vehicle</h2>
+
+            <label>
+                Registration
+                <input
+                    id="registration"
+                    type="text"
+                    placeholder="ABC123"
+                >
+            </label>
+
+            <label>
+                Make
+                <input
+                    id="make"
+                    type="text"
+                    placeholder="Nissan"
+                >
+            </label>
+
+            <label>
+                Model
+                <input
+                    id="model"
+                    type="text"
+                    placeholder="Skyline GTST"
+                >
+            </label>
+
+            <label>
+                Year
+                <input
+                    id="year"
+                    type="number"
+                    placeholder="1994"
+                >
+            </label>
+
+            <label>
+                VIN
+                <input
+                    id="vin"
+                    type="text"
+                    placeholder="Vehicle Identification Number"
+                >
+            </label>
+
+            <button id="saveVehicleButton">
+                Save Vehicle
+            </button>
+
+            <button id="cancelButton" class="secondary">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
+
