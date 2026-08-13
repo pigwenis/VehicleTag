@@ -162,59 +162,83 @@ document.addEventListener("DOMContentLoaded", function () {
     // GET VEHICLE
     // ==================================================
 
-    function getVehicle() {
+   async function getVehicle() {
 
-        const savedVehicle =
-            localStorage.getItem("vehicle");
-
-
-        if (savedVehicle === null) {
-            return null;
-        }
-
-
-        const vehicle =
-            JSON.parse(savedVehicle);
+    const { data, error } =
+        await supabase
+            .from("vehicles")
+            .select("*")
+            .limit(1)
+            .maybeSingle();
 
 
-        // Add Next Service to older vehicles
+    if (error) {
 
-        if (!vehicle.nextService) {
+        console.error(
+            "Error loading vehicle:",
+            error
+        );
 
-            vehicle.nextService = {
-
-                date: "",
-                km: "",
-                details: ""
-
-            };
-
-        }
-
-
-        // Add Registration Details to older vehicles
-
-        if (!vehicle.registrationDetails) {
-
-            vehicle.registrationDetails = {
-
-                registration:
-                    vehicle.registration || "",
-
-                expiryDate:
-                    "",
-
-                renewalPeriod:
-                    "12"
-
-            };
-
-        }
-
-
-        return vehicle;
+        return null;
 
     }
+
+
+    if (!data) {
+
+        return null;
+
+    }
+
+
+    return {
+
+        registration:
+            data.registration || "",
+
+        make:
+            data.make || "",
+
+        model:
+            data.model || "",
+
+        year:
+            data.year || "",
+
+        vin:
+            data.vin || "",
+
+
+        nextService: {
+
+            date:
+                data.next_service_date || "",
+
+            km:
+                data.next_service_km || "",
+
+            details:
+                data.next_service_details || ""
+
+        },
+
+
+        registrationDetails: {
+
+            registration:
+                data.registration || "",
+
+            expiryDate:
+                data.registration_expiry || "",
+
+            renewalPeriod:
+                data.registration_renewal_period || "12"
+
+        }
+
+    };
+
+}
 
 
     // ==================================================
