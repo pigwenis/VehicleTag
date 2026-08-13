@@ -271,7 +271,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const vehicleData = {
-
+        
+        tag_id:
+        existingVehicle?.tag_id ||
+        crypto.randomUUID(),
+        
         registration:
             vehicle.registration,
 
