@@ -312,3 +312,61 @@ input:focus {
     border-color: #007aff;
     background: white;
 }
+
+/* ==================================================
+   DARK MODE
+   ================================================== */
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #121212;
+        color: #f5f5f5;
+    }
+
+    .container {
+        color: #f5f5f5;
+    }
+
+    .vehicle-card,
+    .form-card,
+    .next-service-card,
+    .registration-card {
+        background-color: #1e1e1e;
+        color: #f5f5f5;
+        border-color: #333;
+    }
+
+    input,
+    textarea,
+    select {
+        background-color: #2a2a2a;
+        color: #f5f5f5;
+        border-color: #444;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #999;
+    }
+
+    button {
+        color: #ffffff;
+    }
+
+    .secondary {
+        background-color: #333;
+        color: #ffffff;
+    }
+
+    .danger {
+        background-color: #8b1e1e;
+        color: #ffffff;
+    }
+
+    .next-service-header,
+    .registration-header {
+        color: #f5f5f5;
+    }
+
+}
