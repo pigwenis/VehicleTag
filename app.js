@@ -356,10 +356,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // DISPLAY VEHICLE
     // ==================================================
 
-    function displayVehicle() {
+    async function displayVehicle() {
 
         const vehicle =
-            getVehicle();
+           await getVehicle();
 
 
         // No vehicle saved
@@ -622,7 +622,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-        saveVehicle(vehicle);
+        await saveVehicle(vehicle);
 
         displayNextService(vehicle);
 
@@ -892,12 +892,12 @@ document.addEventListener("DOMContentLoaded", function () {
             registration;
 
 
-        saveVehicle(vehicle);
+        await saveVehicle(vehicle);
 
 
         // Refresh vehicle
 
-        displayVehicle();
+        await displayVehicle();
 
 
         // Keep Registration section open
@@ -1035,9 +1035,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        saveVehicle(vehicle);
+        await saveVehicle(vehicle);
 
-        displayVehicle();
+        await displayVehicle();
 
     };
 
