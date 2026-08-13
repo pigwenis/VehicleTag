@@ -1026,85 +1026,110 @@ if (saved) {
     // SAVE VEHICLE
     // ==================================================
 
-    saveVehicleButton.onclick = async function () {
+   saveVehicleButton.onclick = async function () {
 
-        const existingVehicle =
-           await getVehicle();
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-
-        const vehicle = {
-
-            registration:
-                registrationInput.value.trim(),
-
-            make:
-                makeInput.value.trim(),
-
-            model:
-                modelInput.value.trim(),
-
-            year:
-                yearInput.value.trim(),
-
-            vin:
-                vinInput.value.trim(),
+    const tagId =
+        params.get("tag");
 
 
-            // Keep existing Next Service
+    const vehicle = {
 
-            nextService:
-                existingVehicle?.nextService || {
+        tagId:
+            tagId,
 
-                    date: "",
-                    km: "",
-                    details: ""
+        registration:
+            registrationInput.value.trim().toUpperCase(),
 
-                },
+        make:
+            makeInput.value.trim(),
 
+        model:
+            modelInput.value.trim(),
 
-            // Keep existing Registration details
+        year:
+            yearInput.value.trim(),
 
-            registrationDetails:
-                existingVehicle?.registrationDetails || {
-
-                    registration:
-                        registrationInput.value
-                            .trim()
-                            .toUpperCase(),
-
-                    expiryDate:
-                        "",
-
-                    renewalPeriod:
-                        "12"
-
-                }
-
-        };
+        vin:
+            vinInput.value.trim(),
 
 
-        // Required vehicle information
-
-        if (
-            vehicle.registration === "" ||
-            vehicle.make === "" ||
-            vehicle.model === ""
-        ) {
-
-            alert(
-                "Please enter the registration, make and model."
-            );
-
-            return;
-
-        }
+        nextService:
+            {
+                date: "",
+                km: "",
+                details: ""
+            },
 
 
-        await saveVehicle(vehicle);
+        registrationDetails:
+            {
+                registration:
+                    registrationInput.value
+                        .trim()
+                        .toUpperCase(),
 
-        await displayVehicle();
+                expiryDate: "",
+
+                renewalPeriod: "12"
+            }
 
     };
+
+
+    // Required information
+
+    if (
+        vehicle.registration === "" ||
+        vehicle.make === "" ||
+        vehicle.model === ""
+    ) {
+
+        alert(
+            "Please enter the registration, make and model."
+        );
+
+        return;
+
+    }
+
+
+    // Save to Supabase
+
+    const saved =
+        await saveVehicle(vehicle);
+
+
+    if (!saved) {
+
+        return;
+
+    }
+
+
+    // Reload vehicle from Supabase
+
+    const updatedVehicle =
+        await getVehicle();
+
+
+    if (updatedVehicle) {
+
+        displayVehicle();
+
+    } else {
+
+        alert(
+            "Vehicle was saved, but could not be loaded back from Supabase."
+        );
+
+    }
+
+};
 
 
     // ==================================================
