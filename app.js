@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://jfndjnixoimyueddhtzg.supabase.co";
 const SUPABASE_KEY = "sb_publishable_3XnLxFXJLa2hPm-p3AqRdA_7mpPc1OQ";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
    async function getVehicle() {
 
     const { data, error } =
-        await supabase
+        await supabaseClient
             .from("vehicles")
             .select("*")
             .limit(1)
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
    async function saveVehicle(vehicle) {
 
     const { data: existingVehicle, error: findError } =
-        await supabase
+        await supabaseClient
             .from("vehicles")
             .select("tag_id")
             .limit(1)
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (existingVehicle) {
 
         result =
-            await supabase
+            await supabaseClient
                 .from("vehicles")
                 .update(vehicleData)
                 .eq(
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
 
         result =
-            await supabase
+            await supabaseClient
                 .from("vehicles")
                 .insert(vehicleData);
 
@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     console.log(
-        "Vehicle saved to Supabase."
+        "Vehicle saved to supabaseClient."
     );
 
 }
@@ -1155,7 +1155,7 @@ deleteVehicleButton.onclick = async function () {
 
 
     const { data: vehicle, error: findError } =
-        await supabase
+        await supabaseClient
             .from("vehicles")
             .select("tag_id")
             .limit(1)
@@ -1188,7 +1188,7 @@ deleteVehicleButton.onclick = async function () {
 
 
     const { error: deleteError } =
-        await supabase
+        await supabaseClient
             .from("vehicles")
             .delete()
             .eq("tag_id", vehicle.tag_id);
