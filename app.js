@@ -221,14 +221,111 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE VEHICLE
     // ==================================================
 
-    function saveVehicle(vehicle) {
+   async function saveVehicle(vehicle) {
 
-        localStorage.setItem(
-            "vehicle",
-            JSON.stringify(vehicle)
+    const { data: existingVehicle, error: findError } =
+        await supabase
+            .from("vehicles")
+            .select("tag_id")
+            .limit(1)
+            .maybeSingle();
+
+    if (findError) {
+
+        console.error(
+            "Error finding vehicle:",
+            findError
         );
 
+        alert(
+            "Could not connect to the vehicle database."
+        );
+
+        return;
+
     }
+
+
+    const vehicleData = {
+
+        registration:
+            vehicle.registration,
+
+        make:
+            vehicle.make,
+
+        model:
+            vehicle.model,
+
+        year:
+            vehicle.year,
+
+        vin:
+            vehicle.vin,
+
+        next_service_date:
+            vehicle.nextService?.date || null,
+
+        next_service_km:
+            vehicle.nextService?.km || null,
+
+        next_service_details:
+            vehicle.nextService?.details || null,
+
+        registration_expiry:
+            vehicle.registrationDetails?.expiryDate || null,
+
+        registration_renewal_period:
+            vehicle.registrationDetails?.renewalPeriod || 12
+
+    };
+
+
+    let result;
+
+
+    if (existingVehicle) {
+
+        result =
+            await supabase
+                .from("vehicles")
+                .update(vehicleData)
+                .eq(
+                    "tag_id",
+                    existingVehicle.tag_id
+                );
+
+    } else {
+
+        result =
+            await supabase
+                .from("vehicles")
+                .insert(vehicleData);
+
+    }
+
+
+    if (result.error) {
+
+        console.error(
+            "Error saving vehicle:",
+            result.error
+        );
+
+        alert(
+            "Could not save the vehicle."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Vehicle saved to Supabase."
+    );
+
+}
 
 
     // ==================================================
