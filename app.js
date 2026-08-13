@@ -334,28 +334,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // If this tag already has a vehicle,
     // update that vehicle.
 
-    if (tagIdFromUrl) {
-
-        result =
-            await supabaseClient
-                .from("vehicles")
-                .update(vehicleData)
-                .eq(
-                    "tag_id",
-                    tagIdFromUrl
-                );
-
-    } else {
-
-        // Normal vehicle creation
-        // without a tag URL.
-
-        result =
-            await supabaseClient
-                .from("vehicles")
-                .insert(vehicleData);
-
-    }
+    result =
+    await supabaseClient
+        .from("vehicles")
+        .upsert(
+            vehicleData,
+            {
+                onConflict: "tag_id"
+            }
+        );
 
 
     if (result.error) {
