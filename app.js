@@ -1137,28 +1137,82 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    // ==================================================
-    // DELETE VEHICLE
-    // ==================================================
+   // ==================================================
+// DELETE VEHICLE
+// ==================================================
 
-    deleteVehicleButton.onclick = function () {
+deleteVehicleButton.onclick = async function () {
 
-        const confirmed =
-            confirm(
-                "Are you sure you want to delete this vehicle?"
-            );
-
-
-        if (!confirmed) {
-            return;
-        }
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this vehicle?"
+        );
 
 
-        localStorage.removeItem("vehicle");
+    if (!confirmed) {
+        return;
+    }
 
-        displayVehicle();
 
-    };
+    const { data: vehicle, error: findError } =
+        await supabase
+            .from("vehicles")
+            .select("tag_id")
+            .limit(1)
+            .maybeSingle();
+
+
+    if (findError) {
+
+        console.error(
+            "Error finding vehicle:",
+            findError
+        );
+
+        alert(
+            "Could not find the vehicle."
+        );
+
+        return;
+
+    }
+
+
+    if (!vehicle) {
+
+        await displayVehicle();
+
+        return;
+
+    }
+
+
+    const { error: deleteError } =
+        await supabase
+            .from("vehicles")
+            .delete()
+            .eq("tag_id", vehicle.tag_id);
+
+
+    if (deleteError) {
+
+        console.error(
+            "Error deleting vehicle:",
+            deleteError
+        );
+
+        alert(
+            "Could not delete the vehicle."
+        );
+
+        return;
+
+    }
+
+
+    await displayVehicle();
+
+};
 
 
     // ==================================================
