@@ -314,92 +314,31 @@ input:focus {
 }
 
 /* ==================================================
-   DARK MODE
-   ================================================== */
-
-    .vehicle-card,
-    .form-card,
-    .next-service-card,
-    .registration-card {
-        background-color: #1e1e1e;
-        color: #f5f5f5;
-        border-color: #333;
-    }
-
-    input,
-    textarea,
-    select {
-        background-color: #2a2a2a;
-        color: #f5f5f5;
-        border-color: #444;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-        color: #999;
-    }
-
-    button {
-        color: #ffffff;
-    }
-
-    .secondary {
-        background-color: #333;
-        color: #ffffff;
-    }
-
-    .danger {
-        background-color: #8b1e1e;
-        color: #ffffff;
-    }
-
-    .next-service-header,
-    .registration-header {
-        color: #f5f5f5;
-    }
-
-}
-.dark-mode-toggle {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 1000;
-
-    padding: 10px 14px;
-    border-radius: 20px;
-
-    border: 1px solid #ccc;
-    background: #ffffff;
-    color: #222;
-
-    cursor: pointer;
-    font-size: 14px;
-}
-
-
-/* ==================================================
-   TITLE + DARK MODE TOGGLE
+   DARK MODE + TOGGLE
    ================================================== */
 
 .title-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
-
 
 .title-row h1 {
     margin: 0;
 }
 
 
+/* Toggle */
+
 .dark-mode-toggle {
+    width: auto;
+    margin: 0;
+    padding: 0;
+
     display: flex;
     align-items: center;
     gap: 5px;
-
-    padding: 0;
 
     border: none;
     background: transparent;
@@ -409,12 +348,13 @@ input:focus {
     -webkit-tap-highlight-color: transparent;
 }
 
-
 .dark-mode-icon {
     font-size: 15px;
     line-height: 1;
 }
 
+
+/* iOS switch */
 
 .ios-toggle {
     position: relative;
@@ -429,7 +369,6 @@ input:focus {
     transition: background-color 0.2s ease;
 }
 
-
 .ios-toggle-knob {
     position: absolute;
 
@@ -439,7 +378,7 @@ input:focus {
     top: 2px;
     left: 2px;
 
-    background: #ffffff;
+    background: white;
 
     border-radius: 50%;
 
@@ -449,13 +388,73 @@ input:focus {
 }
 
 
-/* DARK MODE SWITCH ON */
+/* Dark mode switch */
 
 body.dark-mode .ios-toggle {
     background: #34c759;
 }
 
-
 body.dark-mode .ios-toggle-knob {
     transform: translateX(17px);
+}
+
+
+/* Dark mode page */
+
+body.dark-mode {
+    background: #121212;
+    color: #f5f5f5;
+}
+
+body.dark-mode p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .vehicle-card,
+body.dark-mode .form-card,
+body.dark-mode .next-service-card,
+body.dark-mode .registration-card {
+    background: #1e1e1e;
+    color: #f5f5f5;
+    border-color: #333;
+}
+
+body.dark-mode .empty {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: #2a2a2a;
+    color: #f5f5f5;
+    border-color: #444;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #999;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+    background: #333;
+}
+
+body.dark-mode .secondary,
+body.dark-mode .plus-button {
+    background: #333;
+    color: #fff;
+}
+
+body.dark-mode .saved-next-service,
+body.dark-mode .saved-registration {
+    background: #2a2a2a;
+}
+
+body.dark-mode .saved-next-service span,
+body.dark-mode .saved-registration span {
+    color: #ccc;
 }
