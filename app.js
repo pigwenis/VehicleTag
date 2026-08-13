@@ -545,13 +545,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // EDIT NEXT SERVICE
     // ==================================================
 
-    editNextServiceButton.onclick = function (event) {
+    editNextServiceButton.onclick = async function (event) {
 
         event.stopPropagation();
 
 
         const vehicle =
-            getVehicle();
+            await getVehicle();
 
 
         if (vehicle === null) {
@@ -582,10 +582,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE NEXT SERVICE
     // ==================================================
 
-    saveNextServiceButton.onclick = function () {
+    saveNextServiceButton.onclick = async function () {
 
         const vehicle =
-            getVehicle();
+           await getVehicle();
 
 
         if (vehicle === null) {
@@ -825,10 +825,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE REGISTRATION
     // ==================================================
 
-    saveRegistrationButton.onclick = function () {
+    saveRegistrationButton.onclick = async function () {
 
         const vehicle =
-            getVehicle();
+           await getVehicle();
 
 
         if (vehicle === null) {
@@ -916,13 +916,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // EDIT REGISTRATION
     // ==================================================
 
-    editRegistrationButton.onclick = function (event) {
+    editRegistrationButton.onclick = async function (event) {
 
         event.stopPropagation();
 
 
         const vehicle =
-            getVehicle();
+           await getVehicle();
 
 
         if (vehicle === null) {
@@ -961,10 +961,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE VEHICLE
     // ==================================================
 
-    saveVehicleButton.onclick = function () {
+    saveVehicleButton.onclick = async function () {
 
         const existingVehicle =
-            getVehicle();
+           await getVehicle();
 
 
         const vehicle = {
