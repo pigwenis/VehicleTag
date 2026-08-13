@@ -305,8 +305,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const vehicleData = {
         
         tag_id:
-        existingVehicle?.tag_id ||
-        crypto.randomUUID(),
+    existingVehicle?.tag_id ||
+    new URLSearchParams(
+        window.location.search
+    ).get("tag") ||
+    crypto.randomUUID(),
         
         registration:
             vehicle.registration,
@@ -402,19 +405,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (vehicle === null) {
 
-            vehicleDisplay.classList.add("hidden");
+    vehicleDisplay.classList.add("hidden");
 
-            vehicleForm.classList.add("hidden");
+    nextServiceCard.classList.add("hidden");
 
-            nextServiceCard.classList.add("hidden");
+    registrationCard.classList.add("hidden");
 
-            registrationCard.classList.add("hidden");
 
-            noVehicle.classList.remove("hidden");
+    // If this is a VehicleTag URL,
+    // show the vehicle registration form
 
-            return;
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-        }
+    const tagId =
+        params.get("tag");
+
+
+    if (tagId) {
+
+        formTitle.textContent =
+            "Register Your Vehicle";
+
+        registrationInput.value = "";
+
+        makeInput.value = "";
+
+        modelInput.value = "";
+
+        yearInput.value = "";
+
+        vinInput.value = "";
+
+
+        noVehicle.classList.add("hidden");
+
+        vehicleForm.classList.remove("hidden");
+
+    } else {
+
+        // Normal app with no vehicle
+
+        vehicleForm.classList.add("hidden");
+
+        noVehicle.classList.remove("hidden");
+
+    }
+
+
+    return;
+
+}
 
 
         // Vehicle information
