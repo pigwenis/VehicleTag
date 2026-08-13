@@ -175,9 +175,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (error) {
 
         console.error(
-            "Error loading vehicle:",
-            error
-        );
+    "Error loading vehicle:",
+    error.message,
+    error.details,
+    error.hint,
+    error.code
+);
 
         return null;
 
