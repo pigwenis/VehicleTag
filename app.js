@@ -1310,5 +1310,60 @@ deleteVehicleButton.onclick = async function () {
     // ==================================================
 
     displayVehicle();
+// ==================================================
+// DARK MODE
+// ==================================================
 
+const darkModeToggle =
+    document.getElementById("darkModeToggle");
+
+
+const savedDarkMode =
+    localStorage.getItem("darkMode");
+
+
+if (savedDarkMode === "enabled") {
+
+    document.body.classList.add("dark-mode");
+
+    darkModeToggle.textContent =
+        "☀️ Light Mode";
+
+}
+
+
+darkModeToggle.onclick = function () {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+
+    if (
+        document.body.classList.contains(
+            "dark-mode"
+        )
+    ) {
+
+        localStorage.setItem(
+            "darkMode",
+            "enabled"
+        );
+
+        darkModeToggle.textContent =
+            "☀️ Light Mode";
+
+    } else {
+
+        localStorage.setItem(
+            "darkMode",
+            "disabled"
+        );
+
+        darkModeToggle.textContent =
+            "🌙 Dark Mode";
+
+    }
+
+};
 });
