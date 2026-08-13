@@ -388,16 +388,102 @@ input:focus {
 }
 
 
-/* DARK MODE */
+/* ==================================================
+   DARK MODE TOGGLE
+   ================================================== */
+
+.dark-mode-toggle {
+    position: fixed;
+
+    top: 15px;
+    right: 15px;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 4px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+
+/* Emoji */
+
+.dark-mode-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+/* iOS-style switch */
+
+.ios-toggle {
+    position: relative;
+
+    width: 42px;
+    height: 25px;
+
+    background: #d1d1d6;
+
+    border-radius: 999px;
+
+    transition: background 0.2s ease;
+}
+
+
+/* Toggle knob */
+
+.ios-toggle-knob {
+    position: absolute;
+
+    width: 21px;
+    height: 21px;
+
+    top: 2px;
+    left: 2px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+/* Dark mode ON */
+
+body.dark-mode .ios-toggle {
+    background: #34c759;
+}
+
+
+body.dark-mode .ios-toggle-knob {
+    transform: translateX(17px);
+}
+
+
+/* Dark mode appearance */
 
 body.dark-mode {
     background-color: #121212;
     color: #f5f5f5;
 }
 
+
 body.dark-mode .container {
     color: #f5f5f5;
 }
+
 
 body.dark-mode .vehicle-card,
 body.dark-mode .form-card,
@@ -408,6 +494,7 @@ body.dark-mode .registration-card {
     border-color: #333;
 }
 
+
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
@@ -416,18 +503,14 @@ body.dark-mode select {
     border-color: #444;
 }
 
+
 body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
     color: #999;
 }
 
+
 body.dark-mode .secondary {
     background-color: #333;
     color: #fff;
-}
-
-body.dark-mode .dark-mode-toggle {
-    background-color: #2a2a2a;
-    color: #fff;
-    border-color: #555;
 }
