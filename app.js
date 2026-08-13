@@ -1318,40 +1318,37 @@ const darkModeToggle =
     document.getElementById("darkModeToggle");
 
 
+// Load saved preference
+
 const savedDarkMode =
     localStorage.getItem("darkMode");
 
 
 if (savedDarkMode === "enabled") {
 
-    document.body.classList.add("dark-mode");
-
-    darkModeToggle.textContent =
-        "☀️ Light Mode";
+    document.body.classList.add(
+        "dark-mode"
+    );
 
 }
 
 
+// Toggle dark mode
+
 darkModeToggle.onclick = function () {
 
-    document.body.classList.toggle(
-        "dark-mode"
-    );
-
-
-    if (
-        document.body.classList.contains(
+    const darkModeEnabled =
+        document.body.classList.toggle(
             "dark-mode"
-        )
-    ) {
+        );
+
+
+    if (darkModeEnabled) {
 
         localStorage.setItem(
             "darkMode",
             "enabled"
         );
-
-        darkModeToggle.textContent =
-            "☀️ Light Mode";
 
     } else {
 
@@ -1359,9 +1356,6 @@ darkModeToggle.onclick = function () {
             "darkMode",
             "disabled"
         );
-
-        darkModeToggle.textContent =
-            "🌙 Dark Mode";
 
     }
 
