@@ -164,10 +164,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
    async function getVehicle() {
 
-    const { data, error } =
-        await supabaseClient
+    // Get tag ID from URL
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const tagId =
+        params.get("tag");
+
+
+    let query =
+        supabaseClient
             .from("vehicles")
-            .select("*")
+            .select("*");
+
+
+    // If a tag ID exists in the URL,
+    // load that specific vehicle
+
+    if (tagId) {
+
+        query =
+            query.eq(
+                "tag_id",
+                tagId
+            );
+
+    }
+
+
+    const { data, error } =
+        await query
             .limit(1)
             .maybeSingle();
 
@@ -175,12 +201,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (error) {
 
         console.error(
-    "Error loading vehicle:",
-    error.message,
-    error.details,
-    error.hint,
-    error.code
-);
+            "Error loading vehicle:",
+            error.message,
+            error.details,
+            error.hint,
+            error.code
+        );
 
         return null;
 
@@ -195,6 +221,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     return {
+
+        tagId:
+            data.tag_id,
 
         registration:
             data.registration || "",
