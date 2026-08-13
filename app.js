@@ -595,9 +595,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nextServiceToggle.onclick = function (event) {
 
-        event.stopPropagation();
+    event.stopPropagation();
 
-    };
+    const isHidden =
+        nextServiceContent.classList.contains("hidden");
+
+
+    if (isHidden) {
+
+        nextServiceContent.classList.remove("hidden");
+
+        nextServiceToggle.textContent = "−";
+
+    } else {
+
+        nextServiceContent.classList.add("hidden");
+
+        nextServiceToggle.textContent = "+";
+
+    }
+
+};
 
 
     // ==================================================
@@ -881,9 +899,27 @@ if (saved) {
 
     registrationToggle.onclick = function (event) {
 
-        event.stopPropagation();
+    event.stopPropagation();
 
-    };
+    const isHidden =
+        registrationContent.classList.contains("hidden");
+
+
+    if (isHidden) {
+
+        registrationContent.classList.remove("hidden");
+
+        registrationToggle.textContent = "−";
+
+    } else {
+
+        registrationContent.classList.add("hidden");
+
+        registrationToggle.textContent = "+";
+
+    }
+
+};
 
 
     // ==================================================
