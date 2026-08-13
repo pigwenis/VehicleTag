@@ -279,38 +279,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
    async function saveVehicle(vehicle) {
 
-    const { data: existingVehicle, error: findError } =
-        await supabaseClient
-            .from("vehicles")
-            .select("tag_id")
-            .limit(1)
-            .maybeSingle();
-
-    if (findError) {
-
-        console.error(
-            "Error finding vehicle:",
-            findError
+    const params =
+        new URLSearchParams(
+            window.location.search
         );
 
-        alert(
-            "Could not connect to the vehicle database."
-        );
-
-        return;
-
-    }
+    const tagIdFromUrl =
+        params.get("tag");
 
 
     const vehicleData = {
-        
+
         tag_id:
-    existingVehicle?.tag_id ||
-    new URLSearchParams(
-        window.location.search
-    ).get("tag") ||
-    crypto.randomUUID(),
-        
+            vehicle.tagId ||
+            tagIdFromUrl ||
+            crypto.randomUUID(),
+
         registration:
             vehicle.registration,
 
@@ -347,7 +331,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let result;
 
 
-    if (existingVehicle) {
+    // If this tag already has a vehicle,
+    // update that vehicle.
+
+    if (tagIdFromUrl) {
 
         result =
             await supabaseClient
@@ -355,10 +342,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 .update(vehicleData)
                 .eq(
                     "tag_id",
-                    existingVehicle.tag_id
+                    tagIdFromUrl
                 );
 
     } else {
+
+        // Normal vehicle creation
+        // without a tag URL.
 
         result =
             await supabaseClient
@@ -379,14 +369,17 @@ document.addEventListener("DOMContentLoaded", function () {
             "Could not save the vehicle."
         );
 
-        return;
+        return false;
 
     }
 
 
     console.log(
-        "Vehicle saved to supabaseClient."
+        "Vehicle saved to Supabase."
     );
+
+
+    return true;
 
 }
 
@@ -701,9 +694,15 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-        await saveVehicle(vehicle);
+        const saved =
+    await saveVehicle(vehicle);
 
-        displayNextService(vehicle);
+
+if (saved) {
+
+    displayVehicle();
+
+}
 
     };
 
