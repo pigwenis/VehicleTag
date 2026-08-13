@@ -458,3 +458,23 @@ body.dark-mode .saved-next-service span,
 body.dark-mode .saved-registration span {
     color: #ccc;
 }
+body.dark-mode #registrationPeriodInput {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #444;
+}
+
+body.dark-mode #registrationPeriodInput option {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+body.dark-mode #nextServiceDetailsInput {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #444;
+}
+
+body.dark-mode #nextServiceDetailsInput:focus {
+    background-color: #333333;
+    color: #ffffff;
+}
