@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const params =
         new URLSearchParams(window.location.search);
 
-    const registrationTag =
+    const tagId =
     params.get("tag");
 
 
@@ -181,12 +181,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // If a tag ID exists in the URL,
     // load that specific vehicle
 
-   if (registrationTag) {
+   if (tagId) {
 
     query =
-        query.ilike(
-            "registration",
-            registrationTag
+        query.eq(
+            "tag_id",
+            tagId
         );
 
 }
