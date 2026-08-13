@@ -1318,46 +1318,51 @@ const darkModeToggle =
     document.getElementById("darkModeToggle");
 
 
-// Load saved preference
+function applyDarkMode(enabled) {
+
+    if (enabled) {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    } else {
+
+        document.body.classList.remove(
+            "dark-mode"
+        );
+
+    }
+
+}
+
 
 const savedDarkMode =
     localStorage.getItem("darkMode");
 
 
-if (savedDarkMode === "enabled") {
+applyDarkMode(
+    savedDarkMode === "enabled"
+);
 
-    document.body.classList.add(
-        "dark-mode"
-    );
-
-}
-
-
-// Toggle dark mode
 
 darkModeToggle.onclick = function () {
 
-    const darkModeEnabled =
-        document.body.classList.toggle(
+    const enabled =
+        !document.body.classList.contains(
             "dark-mode"
         );
 
 
-    if (darkModeEnabled) {
+    applyDarkMode(enabled);
 
-        localStorage.setItem(
-            "darkMode",
-            "enabled"
-        );
 
-    } else {
-
-        localStorage.setItem(
-            "darkMode",
-            "disabled"
-        );
-
-    }
+    localStorage.setItem(
+        "darkMode",
+        enabled
+            ? "enabled"
+            : "disabled"
+    );
 
 };
 });
